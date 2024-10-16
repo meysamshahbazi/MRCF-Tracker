@@ -4,7 +4,7 @@
 %   Details of some parameters are not presented in the paper, you can
 %   refer to BACF/DSST/ECO paper for more details.
 
-function results = run_MRCF(seq, rp, bSaveImage)%                     ¼ÓÁËÕýÔòÏîµÄIBRI
+function results = run_MRCF(seq, rp, bSaveImage)%                     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IBRI
 % Feature specific parameters
 hog_params.cell_size = 4;
 hog_params.compressed_dim = 10;
@@ -35,7 +35,7 @@ params.min_image_sample_size = 150^2;   % Minimum area of image samples
 params.max_image_sample_size = 200^2;   % Maximum area of image samples
 
 % Spatial regularization window_parameters
-params.feature_downsample_ratio = [4]; %  Feature downsample ratio
+params.feature_downsample_ratio = 4; %  Feature downsample ratio
 params.reg_window_max = 1e5;           % The maximum value of the regularization window
 params.reg_window_min = 1e-3;           % the minimum value of the regularization window
 
