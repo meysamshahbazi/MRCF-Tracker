@@ -1,4 +1,5 @@
 function [features, gparams, feature_info] = init_features(features, gparams, is_color_image, img_sample_sz, size_mode)
+% [features, global_fparams, feature_info] = init_features(features, global_fparams, is_color_image, img_sample_sz, 'exact');
 
 if nargin < 3
     size_mode = 'same';

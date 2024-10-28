@@ -247,11 +247,11 @@ while true
             
             % Compute convolution for each feature block in the Fourier domain
             % and the sum over all blocks.
-            response_d{k1} = bsxfun(@times,beta_k .*  conj(cf_f{k1}), xtf{k1}); %¸÷Í¨µÀÏìÓ¦   ¼ÓÉÏÁËbeta
+            response_d{k1} = bsxfun(@times,beta_k .*  conj(cf_f{k1}), xtf{k1}); %ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó¦   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½beta
             scores_fs_feat{k1} = gather(sum(response_d{k1}, 3));
             scores_fs_sum = scores_fs_feat{k1};
             for k = block_inds
-                scores_fs_feat{k} = gather(sum(bsxfun(@times, beta_k .* conj(cf_f{k}), xtf{k}), 3));% ¼ÓÉÏÁËbeta
+                scores_fs_feat{k} = gather(sum(bsxfun(@times, beta_k .* conj(cf_f{k}), xtf{k}), 3));% ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½beta
                 scores_fs_feat{k} = resizeDFT2(scores_fs_feat{k}, output_sz);
                 scores_fs_sum = scores_fs_sum +  scores_fs_feat{k};
             end
@@ -262,7 +262,7 @@ while true
             
             responsef_padded = resizeDFT2(scores_fs, output_sz);
             response = ifft2(responsef_padded, 'symmetric');
-            response_d{k1} = fftshift(ifft2(response_d{k1}, 'symmetric'));%¸÷Í¨µÀÏìÓ¦ Ê±Óò
+            response_d{k1} = fftshift(ifft2(response_d{k1}, 'symmetric'));%ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó¦ Ê±ï¿½ï¿½
             [disp_row, disp_col, sind] = resp_newton(response, responsef_padded, newton_iterations, ky, kx, output_sz);
 
 
@@ -295,7 +295,7 @@ while true
             max_M_curr = max(M_curr(:));
 
             [id_ymax_curr, id_xmax_curr] = find(M_curr == max_M_curr);
-            shift_y = 1 - id_ymax_curr;%Ö±½Ó°Ñ×î´óÖµÒÆÎ»µ½£¨1£¬1£©£¬ÓëyÒ»ÖÂ
+            shift_y = 1 - id_ymax_curr;%Ö±ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yÒ»ï¿½ï¿½
             shift_x = 1 - id_xmax_curr;
             response_d{1} = circshift(response_d{1},shift_y(1),1);
             response_d{1} = circshift(response_d{1},shift_x(1),2);
@@ -336,7 +336,7 @@ while true
             betha = 10;
             mumax = 100;
             i = 1;
-            beta_k = beta_0; %Í¨µÀÈ¨ÖØ³õÊ¼»¯  ËùÓÐÍ¨µÀÉèÎª1
+            beta_k = beta_0; %Í¨ï¿½ï¿½È¨ï¿½Ø³ï¿½Ê¼ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Îª1
             
             
             M_t = fft2(2 * Prev_response_d{1} - Prev_response_d{2});
@@ -362,7 +362,7 @@ while true
                 t(sx,sy,:) = g;
                 h_f = fft2(t);
                 
-                % solve for ¦Â
+                % solve for ï¿½ï¿½
 %                 beta_k = admm_lambda_3 * beta_0 ./ (admm_lambda * sum(sum(t .* t, 2), 1) + admm_lambda_3);
                 if admm_lambda_3>0
                     S_h_x = h_f .* model_xf;
@@ -390,7 +390,7 @@ while true
     if(seq.frame == 1)
             % Compute convolution for each feature block in the Fourier domain
             % and the sum over all blocks.
-            response_d{k1} = beta_k .* bsxfun(@times, conj(cf_f{k1}), xlf{k1}); % Ã¿¸öÍ¨µÀÏìÓ¦£¬ÆµÓòÉÏ
+            response_d{k1} = beta_k .* bsxfun(@times, conj(cf_f{k1}), xlf{k1}); % Ã¿ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½
             scores_fs_feat{k1} = gather(sum(response_d{k1}, 3));
             
             scores_fs_sum = scores_fs_feat{k1};
@@ -406,16 +406,16 @@ while true
             
             responsef_padded = resizeDFT2(scores_fs, output_sz);
             response = ifft2(responsef_padded, 'symmetric');
-            response_d{k1} = ifft2(response_d{k1}, 'symmetric');% ¸÷Í¨µÀÏìÓ¦£¬×ªÊ±Óò
+            response_d{k1} = ifft2(response_d{k1}, 'symmetric');% ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½×ªÊ±ï¿½ï¿½
             
             M_prev{1} = fftshift(response);
-            Prev_response_d{1} = fftshift(response_d{k1});% ¸÷Í¨µÀÏìÓ¦
+            Prev_response_d{1} = fftshift(response_d{k1});% ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó¦
             
             M_curr = M_prev{1};
             max_M_curr = max(M_curr(:));
 
             [id_ymax_curr, id_xmax_curr] = find(M_curr == max_M_curr);
-            shift_y = 1 - id_ymax_curr;%Ö±½Ó°Ñ×î´óÖµÒÆÎ»µ½£¨1£¬1£©£¬ÓëyÒ»ÖÂ
+            shift_y = 1 - id_ymax_curr;%Ö±ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yÒ»ï¿½ï¿½
             shift_x = 1 - id_xmax_curr;
             Prev_response_d{1} = circshift(Prev_response_d{1},shift_y(1),1);
             Prev_response_d{1} = circshift(Prev_response_d{1},shift_x(1),2);
